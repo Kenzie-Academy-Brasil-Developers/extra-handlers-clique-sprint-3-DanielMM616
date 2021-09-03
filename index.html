@@ -9,7 +9,7 @@
             .pink { background: pink; }
         </style>
     </head>
-    <body>
+    <body id="corpo">
         <h1>An interactive web page</h1>
 
         <h2>1. Color changer</h2>
@@ -29,6 +29,17 @@
                 color_box.className = "blue";
             };
 
+            const corpo = document.getElementById('corpo');
+            const botao = document.createElement('button');
+            botao.innerText = 'Pink';
+            corpo.appendChild(botao);
+
+            botao.setAttribute('id', 'pink_button');
+
+            const pink_button = document.getElementById('pink_button');
+            pink_button.onclick = function () {
+                color_box.className = 'pink'
+            }
             /* TODO 1
              *
              *  Adicionar um botão e um event handler 
@@ -41,18 +52,15 @@
         <h2>2. Counter</h2>
         <button id="counter_button">This fabulous button</button>
         has been clicked <span id="countspan">0</span> times.
+
         <script>
             let count = 0;
             const countspan = document.getElementById("countspan");
             
             const counter_button = document.getElementById("counter_button");
             counter_button.onclick = function() {
-                /* TODO 2
-                 *
-                 *  A função incrementa 1 em um contador "count", 
-                 *  atualiza o conteúdo de texto do "countspan" 
-                 *  e mostra o valor atual de "count".
-                 */
+                count += 1
+                countspan.innerText = count
             }
         </script>
 
@@ -63,11 +71,13 @@
         <script>
             const even_or_odd_button = document.getElementById("even_or_odd_button");
             even_or_odd_button.onclick = function() {
-                /* TODO 3
-                 *
-                 * A função mostra um "alert dialog" mostrando se o contador 
-                 * (da segunda tarefa (TODO 2)) é par ou impar.
-                 */
+                if (count == 0) {
+                    alert('Nem par nem ímpar, zero é zero')
+                } else if (count % 2 == 0) {
+                    alert('É par')
+                } else if (count % 2 !== 0) {
+                    alert('É ímpar')
+                }
             }
         </script>
     </body>
